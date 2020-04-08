@@ -180,9 +180,9 @@ def install_amazon_kinesis_client_libs():
     classpath = kclipy_helper.get_kcl_classpath()
     java_files = '%s/utils/kinesis/java/cloud/localstack/*.java' % ROOT_PATH
     class_files = '%s/utils/kinesis/java/cloud/localstack/*.class' % ROOT_PATH
-    if not glob.glob(class_files):
-        run('javac -source %s -target %s -cp "%s" %s' % (
-            JAVAC_TARGET_VERSION, JAVAC_TARGET_VERSION, classpath, java_files))
+    #if not glob.glob(class_files):
+        #run('javac -source %s -target %s -cp "%s" %s' % (
+            #JAVAC_TARGET_VERSION, JAVAC_TARGET_VERSION, classpath, java_files))
 
 
 def install_lambda_java_libs():

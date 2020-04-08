@@ -1,8 +1,14 @@
 import io
 import os
 import re
-import pwd
-import grp
+try:
+    import pwd
+except ImportError:
+    import winpwd as pwd
+try:
+    import grp
+except ImportError:
+    import wingrp as grp
 import sys
 import json
 import uuid

@@ -1,2 +1,2 @@
 def getpwnam(user):
-    print("Fake pwd")
+    print('Fake pwd')

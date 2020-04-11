@@ -1,2 +1,2 @@
 def getgrnam(user):
-    print("Fake Group")
+    print('Fake Group')

@@ -1,20 +1,27 @@
-version: '2.1'
-
+version: '3'
 services:
   localstack:
-    container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
-    image: localstack/localstack
+    image: "jasonzhang/localstack:jason"
+    container_name: "joulepim"
     ports:
-      - "4567-4599:4567-4599"
-      - "${PORT_WEB_UI-8080}:${PORT_WEB_UI-8080}"
+      - "4572:4572"
+      - "4584:4584"
+      - "4569:4569"
+      - "4574:4574"
+      - "4576:4576"
+      - "4578:4578"
+      - "4581:4581"
+      - "4582:4582"
+      - "4585:4585"
+      - "4586:4586"
+      - "${PORT_WEB_UI-8081}:${PORT_WEB_UI-8081}"
     environment:
-      - SERVICES=${SERVICES- }
-      - DEBUG=${DEBUG- }
-      - DATA_DIR=${DATA_DIR- }
       - PORT_WEB_UI=${PORT_WEB_UI- }
-      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR- }
-      - KINESIS_ERROR_PROBABILITY=${KINESIS_ERROR_PROBABILITY- }
-      - DOCKER_HOST=unix:///var/run/docker.sock
+      - SERVICES=s3,secretsmanager,dynamodb,lambda,sqs,elasticsearch service,cloudwatch,cloudwatch logs,stepfunctions,cloudformation
+      - DEBUG=1
+      - DEFAULT_REGION=us-west-2
+      - DATA_DIR=/tmp/localstack/data
+      - TMPDIR=/private${TMPDIR- }
     volumes:
-      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
-      - "/var/run/docker.sock:/var/run/docker.sock"
+      - './.localstack:/tmp/localstack'
+      - '/var/run/docker.sock:/var/run/docker.sock'

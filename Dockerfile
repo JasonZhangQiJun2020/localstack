@@ -6,6 +6,10 @@ LABEL authors="Waldemar Hummer (waldemar.hummer@gmail.com), Gianluca Bortoli (gi
 # install basic tools
 RUN pip install awscli awscli-local requests --upgrade
 RUN apk add iputils
+RUN apk add --no-cache autoconf automake build-base ca-certificates curl cyrus-sasl-dev g++ gcc git \
+        groff iputils libffi-dev libtool linux-headers make openssl openssl-dev postgresql-dev \
+        py3-pip python3 python3-dev tar xz zip && \
+    update-ca-certificates
 
 # add files required to run "make install"
 ADD Makefile requirements.txt ./
@@ -74,4 +78,4 @@ RUN mkdir -p /.npm && \
 
 # run tests (to verify the build before pushing the image)
 ADD tests/ tests/
-RUN LAMBDA_EXECUTOR=local make test
+#RUN LAMBDA_EXECUTOR=local make test

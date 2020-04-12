@@ -529,6 +529,13 @@ def is_mac_os():
         return False
 
 
+def is_windows():
+    if os.name == 'nt':
+        return True
+    else:
+        return False
+
+
 def is_linux():
     try:
         out = to_str(subprocess.check_output('uname -a', shell=True))

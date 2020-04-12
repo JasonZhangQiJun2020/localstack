@@ -674,6 +674,10 @@ def is_linux():
     return bootstrap.is_linux()
 
 
+def is_windows():
+    return bootstrap.is_windows()
+
+
 def is_alpine():
     try:
         if '_is_alpine_' not in CACHE:
@@ -694,6 +698,8 @@ def get_arch():
         return 'alpine'
     if is_linux():
         return 'linux'
+    if is_windows():
+        return 'windows'
     raise Exception('Unable to determine system architecture')
 
 

@@ -4,24 +4,18 @@ services:
     image: "jasonzhang/localstack:jason"
     container_name: "joulepim"
     ports:
-      - "4572:4572"
-      - "4584:4584"
-      - "4569:4569"
-      - "4574:4574"
-      - "4576:4576"
-      - "4578:4578"
-      - "4581:4581"
-      - "4582:4582"
-      - "4585:4585"
-      - "4586:4586"
+      - "4566-4599:4566-4599"
       - "${PORT_WEB_UI-8081}:${PORT_WEB_UI-8081}"
+      - "8000:8000"
     environment:
+      - SERVICES=${SERVICES- }
       - PORT_WEB_UI=${PORT_WEB_UI- }
-      - SERVICES=s3,secretsmanager,dynamodb,lambda,sqs,elasticsearch service,cloudwatch,cloudwatch logs,stepfunctions,cloudformation
       - DEBUG=1
-      - DEFAULT_REGION=us-west-2
+      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR- }
+      - DEFAULT_REGION=us-east-1
       - DATA_DIR=/tmp/localstack/data
       - TMPDIR=/private${TMPDIR- }
+      - LAMBDA_JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=_debug_port_
     volumes:
       - './.localstack:/tmp/localstack'
       - '/var/run/docker.sock:/var/run/docker.sock'
